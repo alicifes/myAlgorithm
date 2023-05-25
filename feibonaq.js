@@ -5,8 +5,8 @@
  */
 const getData = (getNumber) => {
     if([1,2].includes(getNumber)){
-        return getNumber
+        return 1
     }
     return getData(getNumber -1) + getData(getNumber - 2)
 }
-console.log(getData(5));
+console.log(getData(2));
