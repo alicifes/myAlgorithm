@@ -7,11 +7,25 @@
  * @TestCase [1,8,6,2,5,4,8,3,7] => 49   输入：height = [1,1]输出：1
  */
 
+//复杂度
 const maxArea = function (height = []) {
-    const endMaxAreaList = []
-    for(let i = 0;i < height.length; i++){
-        let currMax = 0
-        for(let j = 1; j< height.length;j++ ){
-        }
+  let left = 0;
+  let right = height.length - 1;
+  let end = 0;
+  while (left < right) {
+    const minner = Math.min(height[right], height[left]);
+    const square = minner * (right - left);
+    if (end < square) {
+      end = square;
     }
-}
+    if (minner === height[left]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return end;
+};
+
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+console.log(maxArea([1,1]));
