@@ -44,19 +44,32 @@ const threeSum = function (nums = []) {
     const require = 0 - nums[left] - nums[right];
     if (require < nums[left]) {
       left++;
+      continue;
     }
     if (require > nums[right]) {
       right--;
+      continue;
     }
-    if (nums.slice(left, right).includes(require)) {
-      end.push([nums[left], require, nums[right]]);
-      left ++
-      right ++
+    console.log(nums.slice(left+1, right));
+    if (nums.slice(left+1, right).includes(require)) {
+      const hasre = end.filter((item) => {
+        return item[0] === nums[left] && item[2] === nums[right];
+      });
+      if (hasre.length === 0) {
+        console.log(nums[left]);
+        end.push([nums[left], require, nums[right]]);
+      }
+      left++;
+      right--;
     } else {
-        left ++
+      left++;
     }
   }
   return end;
 };
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+console.log(threeSum([0, 1, 1]));
+console.log(threeSum([0, 0, 0, 0]));
+console.log(threeSum([1, 2, -2, -1]));
+console.log(threeSum([-2,0,1,1,2]));
