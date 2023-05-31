@@ -38,31 +38,29 @@ const threeSum = function (nums = []) {
   const end = [];
   if (nums.length < 3) return end;
   nums = nums.sort((a, b) => a - b); //排序
-  let left = 0;
-  let right = nums.length - 1;
-  while (left < right) {
-    const require = 0 - nums[left] - nums[right];
-    if (require < nums[left]) {
-      left++;
-      continue;
-    }
-    if (require > nums[right]) {
-      right--;
-      continue;
-    }
-    console.log(nums.slice(left+1, right));
-    if (nums.slice(left+1, right).includes(require)) {
-      const hasre = end.filter((item) => {
-        return item[0] === nums[left] && item[2] === nums[right];
-      });
-      if (hasre.length === 0) {
-        console.log(nums[left]);
-        end.push([nums[left], require, nums[right]]);
+  for (let i = 0; i < nums.length; i++) {
+    //如果最左侧都小于0，没有后续循环都没必要了
+    if (nums[i] > 0) break;
+    if (i > 0 && nums[i] == nums[i - 1]) continue; // 去重当前的第一个数(已经操作)
+    //定左 中 右变动
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      if (nums[i] + nums[left] + nums[right] === 0) {
+        end.push([nums[i], nums[left], nums[right]]);
+        //在比对之后去除重复的值,只有当前的i定了，重复都不需要了
+        while (left < right && nums[left] === nums[left + 1]) left++;
+        while (left < right && nums[right] === nums[right - 1]) right--;
+        //因为两位都定一位，后一位相同
+        left++;
+        right--;
       }
-      left++;
-      right--;
-    } else {
-      left++;
+      if (nums[left] + nums[right] + nums[i] < 0) {
+        left++;
+      }
+      if (nums[left] + nums[right] + nums[i] > 0) {
+        right--;
+      }
     }
   }
   return end;
@@ -72,4 +70,4 @@ console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 console.log(threeSum([0, 1, 1]));
 console.log(threeSum([0, 0, 0, 0]));
 console.log(threeSum([1, 2, -2, -1]));
-console.log(threeSum([-2,0,1,1,2]));
+console.log(threeSum([-2, 0, 1, 1, 2]));
