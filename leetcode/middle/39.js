@@ -12,12 +12,15 @@
  */
 
 const combinationSum = function (candidates = [], target) {
+  //该算法使用回溯算法来操作,穷举遍历全部的集合
   const end = [];
   const router = [];
   //回溯
   const backtrack = (startIndex,sum) => {
+    //如果和相同
     if(sum  === target){
         end.push([...router])
+        //这里是否使用return无所谓，因为下一步肯定会走出循环
     }
     for (let i = startIndex; i < candidates.length; i++) {
         // 剪枝
