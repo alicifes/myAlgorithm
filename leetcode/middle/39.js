@@ -11,28 +11,31 @@
  * @TestCase [1],1 => [[1]]
  */
 
+//在本质上可以理解为是对一颗树的遍历，从上到下获得的节点增加，因此这里可以使用回溯算法从上到下推导
 const combinationSum = function (candidates = [], target) {
   //该算法使用回溯算法来操作,穷举遍历全部的集合
   const end = [];
   const router = [];
+  //这里必须要进行排序，如果不排序，而且是从小到大排序
+  candidates = candidates.sort((a, b) => a - b);
   //回溯
-  const backtrack = (startIndex,sum) => {
+  const backtrack = (startIndex, sum) => {
     //如果和相同
-    if(sum  === target){
-        end.push([...router])
-        //这里是否使用return无所谓，因为下一步肯定会走出循环
+    if (sum === target) {
+      end.push([...router]);
+      //这里是否使用return无所谓，因为下一步肯定会走出循环
     }
     for (let i = startIndex; i < candidates.length; i++) {
-        // 剪枝
-        if(candidates[i]+sum > target) return;
-        router.push(candidates[i]);
-        backtrack(i, sum + candidates[i]);
-        router.pop()
-      }
+      // 剪枝
+      if (candidates[i] + sum > target) return;
+      router.push(candidates[i]);
+      backtrack(i, sum + candidates[i]);
+      router.pop();
+    }
   };
-  backtrack(0,0)
-  return end
+  backtrack(0, 0);
+  return end;
 };
 
 console.log(combinationSum([2, 3, 6, 7], 7));
-console.log(combinationSum([2, 3, 5 ], 8));
+console.log(combinationSum([2, 3, 5], 8));
