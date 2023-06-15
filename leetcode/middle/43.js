@@ -15,13 +15,25 @@
  */
 
 const multiply = function (num1, num2) {
-  if (num1 === "0" || num2 === "0") return "0";
-  let sum = 0;
-  for(let i = num1.length;i< num1.length; i--){
-    for(let j = num2.length; j< num2.length;j--){
+  const m = num1.length
+  const n = num2.length
+  const res = new Array(m+n).fill(0)
+  for (let i = num1.length - 1; i >= 0; i--) {
+    for (let j = num2.length - 1; j >= 0; j--) {
+      const mul = num1.charAt(i) * num2.charAt(j);
+      const current = num1.length - i + num2.length - j - 2;
+
+      // 乘积在res对应的索引位置
+      let p1 = i + j,
+        p2 = i + j + 1;
+      // 叠加到res上
+      let sum = mul + res[p2];
+      res[p2] = sum % 10;
+      res[p1] += parseInt(sum / 10);
 
     }
   }
+  return sum.reduce((pre, cur) => (pre += cur), 0);
 };
 
-console.log(multiply("123","456"));
+console.log(multiply("123", "456"));
