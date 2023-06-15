@@ -17,7 +17,11 @@
 const multiply = function (num1, num2) {
   if (num1 === "0" || num2 === "0") return "0";
   let sum = 0;
-  for(let i = 0;i< num1.length; num1 ++){}
+  for(let i = num1.length;i< num1.length; i--){
+    for(let j = num2.length; j< num2.length;j--){
+
+    }
+  }
 };
 
 console.log(multiply("123","456"));
