@@ -11,16 +11,17 @@
 //这里使用 前后两个值相同且该值已被使用对出现过的数据进行过滤
 //nums[i] === nums[i - 1] && used[i - 1] 即代表当前元素同一树层nums[i - 1]使用过，
 const permuteUnique = function (nums = []) {
-  const used = [];
+  const used = [nums.length].fill(false);
   const path = [];
   const end = [];
+  nums.sort((a,b)=>a-b);
   const trackBack = (a) => {
     if (a.length === nums.length) {
       end.push([...a]);
       return;
     }
     for (let i = 0; i < nums.length; i++) {
-      if (used[i] || nums[i] === nums[i-1] && used[i-1]) continue;
+      if (used[i] || (nums[i] === nums[i-1] && !used[i-1])) continue;
       used[i] = true;
       path.push(nums[i]);
       trackBack(path);
@@ -32,5 +33,6 @@ const permuteUnique = function (nums = []) {
   return end;
 };
 
-console.log(permuteUnique([1, 1, 2]));
-console.log(permuteUnique([1,2,3]));
+//console.log(permuteUnique([1, 1, 2]));
+//console.log(permuteUnique([1,2,3]));
+console.log(permuteUnique([3,3,0,3]));
