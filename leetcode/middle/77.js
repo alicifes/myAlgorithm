@@ -12,13 +12,23 @@
  * @testCase n = 3, k = 0 => []
  */
 
+//还是使用回溯算法，通过移动
 const combine = function (n, k) {
-    const end = []
-    let left = 1
-    let right = left + k
-    while(left < n - k){
-        for(let i = 1; i < right; i++ ){
-
-        }
+  const end = [];
+  let current = [];
+  const trackBack = (cur) => {
+    if (current.length === k) {
+      end.push([...current]);
+      return;
     }
-}
+    for (let i = cur; i < n; i++) {
+      current.push(i + 1);
+      trackBack(i + 1);
+      current.pop();
+    }
+  };
+  trackBack(0);
+  return end;
+};
+
+console.log(combine(3, 3));
