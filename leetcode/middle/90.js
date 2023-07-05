@@ -14,9 +14,11 @@ const subsetsWithDup = function (nums = []) {
   const router = [];
   const trackBack = (cur) => {
     end.push([...router]);
-    if (router.length === cur.length) return;
+    if (router.length === nums.length) return;
     for (let i = cur; i < nums.length; i++) {
-      router.push(nums[cur]);
+      if (i!== cur && nums[i] === nums[i - 1]) continue; //表示当前的集合被使用
+      //if (nums[i] === nums[i - 1]) continue; //表示当前的集合被使用
+      router.push(nums[i]);
       trackBack(i + 1);
       router.pop();
     }

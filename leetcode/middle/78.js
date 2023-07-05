@@ -24,5 +24,4 @@ const subsets = function (nums = []) {
   return end
 };
 console.log(subsets([1,2,3]));
-console.log(subsets([1,2,3,4]));
 
