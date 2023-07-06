@@ -11,13 +11,17 @@
  */
 
 const maxProfit = function (prices = []) {
-  let left = 0;
+  const priLength = prices.length;
+  const newArr = new Array(priLength).fill(0);
+  let cur = 0;
+  for (let i = priLength - 2; i >= 0; i--) {
+    cur = Math.max(prices[i + 1], cur);
+    newArr[i] = Math.max(cur, newArr[i + 1]);
+  }
+  console.log(newArr);
   let end = 0;
-  while (left < prices.length - 1) {
-    for (let i = left + 1; i < prices.length - 1; i++) {
-      end = Math.max(prices[i] - prices[left], end);
-    }
-    left++;
+  for (let i = 0; i < priLength; i++) {
+    end = Math.max(newArr[i] - prices[i], end);
   }
   return end;
 };
