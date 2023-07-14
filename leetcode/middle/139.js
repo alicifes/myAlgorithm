@@ -10,5 +10,28 @@
  * @testCase s = "cars", wordDict = ["car","ca","rs"] => true
  */
 
-const wordBreak = function (s = '', wordDict = []) {
-}
+const wordBreak = function (s = "", wordDict = []) {
+  const allLength = s.length;
+  const dp = new Array(allLength + 1).fill(false);
+  //开始
+  dp[0] = true;
+  for (let i = 1; i <= allLength; i++) {
+    // for (let j = i - 1; j >= 0; j--) {
+    //   if (dp[j] && wordDict.includes(s.slice(j, i))) {
+    //     dp[i] = true;
+    //   }
+    // }
+    for(let j = 0; j <= i - 1; j++){
+        if(dp[j] && wordDict.includes(s.slice(j,i))){
+            dp[i] = true
+            break
+        }
+    }
+  }
+  return dp[allLength];
+};
+
+console.log(wordBreak("leetcode", ["leet", "code"]));
+console.log(wordBreak("applepenapple", ["apple", "pen"]));
+console.log(wordBreak("catsandog", ["cats", "dog", "sand", "and", "cat"]));
+console.log(wordBreak("cars", ["car", "ca", "rs"])); //true
