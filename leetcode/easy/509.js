@@ -32,7 +32,7 @@
 const fib = (n) => {
     if (n <= 1) return n;
     //滚动数组 dp[i]只和dp[i-1]、dp[i-2]相关，只维护长度为2的滚动数组，不断替换数组元素
-    //很大程度上缩减了内存空间
+    //使用状态压缩，优化了内存的结构
     const dp = [0, 1];
     let sum = null;
     for (let i = 2; i <= n; i++) {
