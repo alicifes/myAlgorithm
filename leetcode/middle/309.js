@@ -24,11 +24,10 @@ var maxProfit = function (prices = []) {
     }
     unhold[i] = Math.max(unhold[i - 1], hold[i - 1] + prices[i]);
   }
-  //console.log(hold);
-  console.log(unhold);
+  //console.log(unhold);
   return unhold[n - 1];
 };
 
 console.log(maxProfit([1, 2, 3, 0, 2])); // 3
 console.log(maxProfit([1, 2, 4])); //3
-console.log(maxProfit([2, 1])); //3
+console.log(maxProfit([2, 1])); //0
