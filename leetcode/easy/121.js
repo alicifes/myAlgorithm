@@ -10,21 +10,34 @@
  * @testCase [7,6,4,3,1] => 0
  */
 
-const maxProfit = function (prices = []) {
-  const priLength = prices.length;
-  const newArr = new Array(priLength).fill(0);
-  let cur = 0;
-  for (let i = priLength - 2; i >= 0; i--) {
-    cur = Math.max(prices[i + 1], cur);
-    newArr[i] = Math.max(cur, newArr[i + 1]);
+//dp思想
+const maxProfit = (prices = []) => {
+  const n = prices.length;
+  let maxPro = 0;
+  let minPrice = prices[0];
+  for (let i = 1; i < n; i++) {
+    maxPro = Math.max(prices[i] - minPrice, maxPro);
+    //找的最小的
+    minPrice = Math.min(minPrice,prices[i])
   }
-  console.log(newArr);
-  let end = 0;
-  for (let i = 0; i < priLength; i++) {
-    end = Math.max(newArr[i] - prices[i], end);
-  }
-  return end;
-};
+  return maxPro
+}
+
+//const maxProfit = function (prices = []) {
+// const priLength = prices.length;
+// const newArr = new Array(priLength).fill(0);
+// let cur = 0;
+// for (let i = priLength - 2; i >= 0; i--) {
+//   cur = Math.max(prices[i + 1], cur);
+//   newArr[i] = Math.max(cur, newArr[i + 1]);
+// }
+// console.log(newArr);
+// let end = 0;
+// for (let i = 0; i < priLength; i++) {
+//   end = Math.max(newArr[i] - prices[i], end);
+// }
+// return end;
+//};
 
 console.log(maxProfit([7, 1, 5, 3, 6, 4]));
 console.log(maxProfit([7, 6, 4, 3, 1]));

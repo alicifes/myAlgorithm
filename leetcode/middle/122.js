@@ -16,14 +16,28 @@
  * 总利润为 4 + 3 = 7 。
  */
 
-const maxProfit = function (prices = []) {
-    let end = 0
-    for(let i = 1; i < prices.length; i++){
-        if(prices[i-1]< prices[i]){
-            end += (prices[i] - prices[i-1])
-        }
+// const maxProfit = function (prices = []) {
+//     let end = 0
+//     for(let i = 1; i < prices.length; i++){
+//         if(prices[i-1]< prices[i]){
+//             end += (prices[i] - prices[i-1])
+//         }
+//     }
+//     return end
+// }
+
+//dp状态机的解法，构建两个数组，维持最大值的状态
+const maxProfit = (prices = []) => {
+    const n = prices.length
+    const hand = new Array(n)
+    const unhandle = new Array(n)
+    hand[0] = -prices[0]
+    unhandle[0] = 0
+    for(let i = 1; i< prices.length;i++){
+        hand[i] = Math.max(unhandle[i-1] - prices[i],hand[i-1])
+        unhandle[i] = Math.max( hand[i-1] + prices[i],unhandle[i-1])
     }
-    return end
+    return unhandle[n-1]
 }
 
 console.log(maxProfit([1,2]));
