@@ -12,37 +12,11 @@
  * @testCase coins = [1], amount = 2 => 2
  */
 
-//dp[] = dp[] + dp[]
 const coinChange = function (coins = [], amount = 0) {
   coins.sort((a, b) => a - b);
-  let end = -1;
-  const router = [];
-  const trackBack = (sum, index) => {
-    sum += coins[index];
-    if (sum === amount) {
-      if (end === -1) {
-        end = router.length;
-        return
-      }
-      if (router.length < end) {
-        end = router.length;
-        return;
-      }
-    }
-    if (sum > amount) {
-      return;
-    }
-    if (sum < amount) {
-      for (let i = 0; i < coins.length; i++) {
-        router.push(coins[i]);
-        trackBack(sum, i);
-        sum = sum - coins[i]
-        router.pop();
-      }
-    }
-  };
-  trackBack(0, 0);
-  return end;
+  const n = coins.length;
+  let end = amount /coins[n - 1]; ;
+  let elseEnd = amount % coins[n -1];
 };
 
-console.log(coinChange([1, 2, 5], 11));
+console.log(coinChange([1, 2, 5], 11)); // 3
