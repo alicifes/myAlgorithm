@@ -6,8 +6,11 @@
  * @testCase  输入：n = 5 输出：[0,1,1,2,1,2] 解释：0 --> 0 1 --> 1 2 --> 10 3 --> 11 4 --> 100 5 --> 101
  */
 const countBits = (n = 1) => {
-  let end = parseInt(n, 2);
-  console.log(end);
+  let end = [];
+  for (let i = 0; i <= n; i++) {
+    end.push([...i.toString(2)].filter(i => i === '1').length)
+  }
+  return end
 };
 
 console.log(countBits(5));
