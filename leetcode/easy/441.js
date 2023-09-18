@@ -17,4 +17,4 @@ const arrangeCoins = function(n) {
 };
 
 //console.log(arrangeCoins(5))
-console.log(arrangeCoins(8))
+//console.log(arrangeCoins(8))
