@@ -8,14 +8,20 @@
  */
 var longestPalindrome = function (s) {
   let end = 0;
+  let single = 0
   for (let i = 0; i < s.length; i++) {
-    if (s.slice(i).replace(s.charAt(i), "").length !== s.slice(i)) {
-      s = s.slice(0, i) + s.slice(i).replace(s.charAt(i), "");
-      end += 2
-    }
     console.log(s);
+    if (
+      s.slice(i + 1).replace(s.charAt(i), "").length !== s.slice(i + 1).length
+    ) {
+      s = s.slice(0, i + 1) + s.slice(i + 1).replace(s.charAt(i), "");
+      end += 2;
+    } else{
+        single = 1
+    }
   }
-  return end
+  return end += single;
 };
 
 console.log(longestPalindrome("aaaaaccc"));
+console.log(longestPalindrome("bb"));
