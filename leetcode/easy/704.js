@@ -27,7 +27,8 @@ const search = function (nums, target) {
   return -1;
 };
 
-console.log(search([-1, 0, 3, 5, 9, 12], 9));
 console.log(search([5], 5));
 console.log(search([2, 5], 2));
 console.log(search([-1, 0, 5], 5));
+
+
