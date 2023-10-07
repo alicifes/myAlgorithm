@@ -14,8 +14,6 @@ var isToeplitzMatrix = function (
   ]
 ) {
   for (let i = 0; i < matrix.length - 1; i++) {
-    console.log(matrix[i].slice(0, -1).join(""));
-    console.log(matrix[i + 1].slice(1).join(""));
     if (matrix[i].slice(0, -1).join("") !== matrix[i + 1].slice(1).join("")) {
       return false;
     }
