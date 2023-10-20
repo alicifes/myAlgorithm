@@ -11,6 +11,30 @@
  */
 var threeSumClosest = function (nums, target) {
   nums.sort((a, b) => a - b);
+  let minDiff = Infinity;
+  for (let i = 0; i < nums.length - 2; i++) {
+    let left = i + 1;
+    let right = nums.length - 1;
+    while (left < right) {
+      let cur = nums[i] + nums[left] + nums[right];
+      let diff = target - cur;
+      if (diff === 0) return target;
+      if (Math.abs(diff) < Math.abs(target - minDiff)) {
+        minDiff = cur;
+      }
+      if (cur < target) {
+        left++;
+      } else if (cur > target) {
+        right--;
+      } else {
+        return cur;
+      }
+    }
+  }
+  return minDiff;
 };
 
-console.log(threeSumClosest([-1, 2, 1, -4], 1));
+console.log(threeSumClosest([-1, 2, 1, -4], 1)); //2
+console.log(threeSumClosest([0, 0, 0], 1));
+console.log(threeSumClosest([1, 1, 1, 1], 0)); //3
+console.log(threeSumClosest([4, 0, 5, -5, 3, 3, 0, -4, -5], -2)); // -2
