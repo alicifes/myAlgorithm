@@ -16,4 +16,28 @@
  */
 
 const findMinArrowShots = function (points = []) {
-}
+  if (!points.length) return 0;
+  points.sort((a, b) => {
+    return a[1] - b[1];
+  });
+  let i = 0;
+  let count = 0;
+  while (i < points.length) {
+    const end = points[i][1]
+    i++;
+    while(i < points.length && end >= points[i][0]){
+        i++;
+    }
+    count ++
+  }
+  return count;
+};
+
+console.log(
+  findMinArrowShots([
+    [10, 16],
+    [2, 8],
+    [1, 6],
+    [7, 12],
+  ])
+);
