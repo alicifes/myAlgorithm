@@ -20,7 +20,6 @@ var setZeroes = function (matrix = []) {
   });
   return matrix;
 };
-
 // console.log(
 //   setZeroes([
 //     [1, 1, 1],
