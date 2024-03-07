@@ -12,13 +12,12 @@ Y   I   R
  */
 var convert = function (s, numRows) {
     if(numRows === 1) return s
-  const sLen = s.length;
-  let end = ''
-  let isDown = true
-  for(let i = 0; i < s.length; i ++){
-
-  }
-  console.log(parseInt(sLen / numRows));
+    let newArr = new Array(numRows).fill([]);
+    for(let i = 0; i < s.length; i ++){
+      let row = i % (2 * numRows - 2)
+      if(row < i ){
+      }
+    }
 };
 
 console.log(convert("PAYPALISHIRING", 3));
