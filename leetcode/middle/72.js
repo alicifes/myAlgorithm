@@ -29,6 +29,7 @@ var minDistance = function (word1, word2) {
       }
     }
   }
+
   return dp[x][y];
 };
 
